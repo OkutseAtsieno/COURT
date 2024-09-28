@@ -1,0 +1,56 @@
+
+{% load static %}
+{% extends "base.html" %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Advocate Details</title>
+    <style>
+        /* Simple styling */
+        .case-details {
+            margin-top: 20px;
+        }
+        .case-details div {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .form-container {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <h1>Advocate Details</h1>
+
+    <h2>{{ advocate.user.username }}</h2>
+    <p>Phone Number: {{ advocate.user.phone_number }}</p>
+    <p>Specialization: {{ advocate.specialization }}</p>
+    <p>Experience: {{ advocate.experience }} years</p>
+
+    <div class="form-container">
+        <h3>Edit Advocate Information</h3>
+        <form method="post" action="{% url 'advocate_detail' advocate.id %}">
+            {% csrf_token %}
+            {{ advocate_form.as_p }}
+            <button type="submit">Update Advocate</button>
+        </form>
+    </div>
+
+    <h3>Cases</h3>
+    <div class="case-details">
+        {% for case in cases %}
+            <div>
+                <h4>Case Number: {{ case.case_number }}</h4>
+                <p>Description: {{ case.description }}</p>
+                <p>Status: {{ case.status }}</p>
+            </div>
+        {% empty %}
+            <p>No cases found for this advocate.</p>
+        {% endfor %}
+    </div>
+</body>
+</html>

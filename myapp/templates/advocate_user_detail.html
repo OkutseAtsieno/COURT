@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Advocates List</title>
+</head>
+<body>
+    <h1>Advocates List</h1>
+    <ul>
+        {% for advocate in advocates %}
+            <li><a href="{% url 'advocate_detail' advocate.id %}">{{ advocate.user.username }} - {{ advocate.specialization }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

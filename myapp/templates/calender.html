@@ -1,0 +1,20 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Court Calendar</title>
+</head>
+<body>
+    <h1>Court Calendar</h1>
+    <ul>
+        {% for event in events %}
+            <li>
+                <strong>{{ event.title }}</strong><br>
+                Date: {{ event.date }}<br>
+                Time: {{ event.time }}<br>
+                Description: {{ event.description }}<br><br>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

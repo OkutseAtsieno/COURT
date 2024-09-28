@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+</head>
+<body>
+    <h2>Register</h2>
+    <form method="POST" action="{% url 'register_user' %}">
+        {% csrf_token %}
+        
+        {{ user_form.as_p }}
+
+        <label for="role">Select Role:</label>
+        <select id="role" name="role" required>
+            <option value="" disabled selected>Select your role</option>
+            <option value="litigant">Litigant</option>
+            <option value="advocate">Advocate</option>
+            <option value="staff">Court Staff</option>
+        </select>
+
+        <button type="submit">Register</button>
+    </form>
+</body>
+</html>
