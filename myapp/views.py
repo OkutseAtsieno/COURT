@@ -7,7 +7,7 @@ from django.db import models
 
 # Home view
 def home(request):
-    return render(request, 'home.html')
+    return render(request, 'Home.html')
 
 def base_view(request):
     return render(request, 'base.html')

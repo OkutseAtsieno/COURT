@@ -5,7 +5,7 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     # Home page
-    path('', views.home, name='home'),
+    path('', views.home, name='Home'),
 
     path('base_view/', views.base_view, name='base'), 
     # Portfolio page

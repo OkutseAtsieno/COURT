@@ -1,114 +1,114 @@
 
-
-{% extends "base.html" %}
 {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>BM MUSYOKI</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="{% static 'assets/img/favicon.png' %}" rel="icon" />
+    <link href="{% static 'assets/img/law1.jpg' %}" rel="apple-touch-icon" />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+    <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/main.css' %}" rel="stylesheet" />
+    <style>
+      .navbar {
+        background-color: transparent !important;
+      }
+      .navbar-nav .nav-link.active,
+      .dropdown-item.active {
+        background-color: #87ceeb !important;
+        color: white !important;
+      }
+      .carousel-inner img {
+        width: 100%;
+        height: 100vh;
+        object-fit: contain;
+      }
+      .carousel {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+      }
+      #carouselExampleIndicators {
+        margin-top: 80px;
+      }
+    </style>
+</head>
 
-{% block body %}
-
-<main class="main">
-
- 
-
-    </main>
-
-    <!-- Scroll Top -->
-<a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-<!-- About Section -->
-<section id="about" class="about section">
-  <!-- Section Title -->
-  <div class="container section-title" data-aos="fade-up">
-    <h2>About Us</h2>
-  </div><!-- End Section Title -->
-
-  <div class="container">
-    <div class="row gy-4">
-      <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
-        <p>
-          At BM Musyoki and Co. Advocates, we are dedicated to providing exceptional legal services with a focus on professionalism,
-          integrity, and personalized client care. Founded with a commitment to delivering tailored solutions,<br> our firm specializes in [key practice areas like criminal law, family law, corporate law, etc.],<br> ensuring comprehensive legal support for both individuals and businesses.
-        </p>
-        <ul>
-          <li><i class="bi bi-check2-circle"></i> <span>Integrity
-            We uphold the highest ethical standards in all our dealings, ensuring transparency and honesty with every client.</span></li>
-          <li><i class="bi bi-check2-circle"></i> <span>Client-Centered Approach
-            Our clients’ needs come first. We take the time to understand their unique legal challenges and provide tailored solutions.</span></li>
-          <li><i class="bi bi-check2-circle"></i> <span>Excellence
-            We are committed to delivering the best possible outcomes through dedication, precision, and expert knowledge.</span></li>
-        </ul>
-      </div>
-      <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-        <p>Confidentiality
-          We protect the privacy and sensitive information of our clients, maintaining the strictest confidentiality throughout the legal process.</p>
-      </div>
-    </div>
-  </div>
-</section><!-- /About Section -->
-
-<!-- Why Us Section -->
-<section id="why-us" class="section why-us light-background" data-builder="section">
-  <div class="container-fluid">
-    <div class="row gy-4">
-      <div class="col-lg-7 d-flex flex-column justify-content-center order-2 order-lg-1">
-        <div class="content px-xl-5" data-aos="fade-up" data-aos-delay="100">
-          <h3><strong>Our Mission</strong></h3>
-          <p>
-            At BM Musyoki and Co. Advocates, our mission is to provide personalized, high-quality legal services that meet the unique needs of our clients. We are committed to delivering practical solutions with integrity, professionalism, and dedication, ensuring that each client receives the attention and expertise they deserve.
-          </p>
+<body class="index-page">
+    <header id="header" class="header d-flex align-items-center fixed-top" style="background-color: #87ceeb">
+        <div class="container-fluid container-xl position-relative d-flex align-items-center">
+            <a href="/" class="logo d-flex align-items-center me-auto">
+                <h1 class="sitename">B.M MUSYOKI AND CO.ADVOCATES</h1>
+            </a>
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="container-fluid">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="">About</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Get Started
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="#">Advocate</a></li>
+                                    <li><a class="dropdown-item" href="#">Client</a></li>
+                                    <li><a class="dropdown-item" href="#">Clerk</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <form class="d-flex">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                            <button class="btn btn-outline-success" type="submit">Search</button>
+                        </form>
+                    </div>
+                </div>
+            </nav>
         </div>
-        <div class="faq-container px-xl-5" data-aos="fade-up" data-aos-delay="200">
-          <div class="faq-item faq-active">
-            <h3><span>01</span> How much will it cost to hire a lawyer for my case?</h3>
-            <div class="faq-content">
-              <p>At BM Musyoki and Co. Advocates, our fees depend on the complexity and nature of your case. We offer a transparent fee structure, which may include hourly rates, flat fees, or contingency fees for specific types of cases. During your initial consultation, we will provide you with an estimate of the expected costs, ensuring there are no hidden fees.</p>
+    </header>
+
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
+            <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
+            <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{% static 'assets/img/law 4.jpg' %}" class="d-block w-100" alt="Law Image 4" />
             </div>
-            <i class="faq-toggle bi bi-chevron-right"></i>
-          </div><!-- End Faq item-->
-          <div class="faq-item">
-            <h3><span>02</span> Will my case go to trial, or can it be settled out of court?</h3>
-            <div class="faq-content">
-              <p>Many cases can be resolved without going to trial through negotiation, mediation, or settlement. However, if a fair resolution cannot be reached, we are fully prepared to take your case to court. At BM Musyoki and Co. Advocates, we work closely with you to explore all options and advise you on the best course of action for your situation.</p>
+            <div class="carousel-item">
+                <img src="{% static 'assets/img/law 3.jpg' %}" class="d-block w-100" alt="Law Image 2" />
             </div>
-            <i class="faq-toggle bi bi-chevron-right"></i>
-          </div><!-- End Faq item-->
-          <div class="faq-item">
-            <h3><span>03</span> What should I bring to my initial consultation with a lawyer?</h3>
-            <div class="faq-content">
-              <p>For your initial consultation at BM Musyoki and Co. Advocates, it's helpful to bring all relevant documents related to your case. This may include contracts, correspondence, court documents, or any other evidence you believe is important. Additionally, prepare a list of questions or concerns you have about your case. This will help us better understand your situation and provide you with the best possible advice.</p>
+            <div class="carousel-item">
+                <img src="{% static 'assets/img/law2.jpg' %}" class="d-block w-100" alt="Law Image 3" />
             </div>
-            <i class="faq-toggle bi bi-chevron-right"></i>
-          </div><!-- End Faq item-->
         </div>
-      </div>
-      <div class="col-lg-5 order-1 order-lg-2 why-us-img">
-        <img src="{% static 'assets/img/why-us.png' %}" class="img-fluid" alt="" data-aos="zoom-in" data-aos-delay="100">
-      </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
-  </div>
-</section><!-- /Why Us Section -->
 
-<!-- Skills Section -->
-<section id="skills" class="skills section">
-  <div class="container" data-aos="fade-up" data-aos-delay="100">
-    <div class="row">
-      <div class="col-lg-6 d-flex align-items-center">
-        <img src="{% static 'assets/img/skills.png' %}" class="img-fluid" alt="">
-      </div>
-      <div class="col-lg-6 pt-4 pt-lg-0 content">
-        <h3>Your Legal Journey with Us</h3>
-        <p class="fst-italic">
-          At BM Musyoki and Co. Advocates, we are not just your legal representatives – we are your partners in navigating complex legal challenges. Our team is dedicated to providing personalized attention and expert advice tailored to your unique situation. From your first consultation to the resolution of your case, we stand by You
-          <!-- Vendor JS Files -->
-<script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-<script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
-<script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
-<script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
-<script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
-<script src="{% static 'assets/vendor/waypoints/noframework.waypoints.js' %}"></script>
-<script src="{% static 'assets/vendor/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
-<script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+    {% block body %}
+    <!-- Default content can go here if necessary -->
+    {% endblock %}
 
-<!-- Main JS File -->
-<script src="{% static 'assets/js/main.js' %}"></script>
-
-          {% endblock %}
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
