@@ -3,44 +3,20 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>BM MUSYOKI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}BM Musyoki{% endblock %}</title>
+
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="{% static 'assets/img/favicon.png' %}" rel="icon" />
-    <link href="{% static 'assets/img/law1.jpg' %}" rel="apple-touch-icon" />
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
-    <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet" />
     <link href="{% static 'assets/css/main.css' %}" rel="stylesheet" />
-    <style>
-      .navbar {
-        background-color: transparent !important;
-      }
-      .navbar-nav .nav-link.active,
-      .dropdown-item.active {
-        background-color: #87ceeb !important;
-        color: white !important;
-      }
-      .carousel-inner img {
-        width: 100%;
-        height: 100vh;
-        object-fit: contain;
-      }
-      .carousel {
-        position: relative;
-        width: 100%;
-        overflow: hidden;
-      }
-      #carouselExampleIndicators {
-        margin-top: 80px;
-      }
-    </style>
   </head>
 
-  <body class="index-page">
+  <body>
+    <!-- Header (Logo and Navbar) -->
     <header id="header" class="header d-flex align-items-center fixed-top" style="background-color: #87ceeb">
-      <div class="container-fluid container-xl position-relative d-flex align-items-center">
-        <a href="/" class="logo d-flex align-items-center me-auto">
-          <h1 class="sitename">B.M MUSYOKI AND CO.ADVOCATES</h1>
+      <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+        <a href="/" class="logo d-flex align-items-center">
+          <h1>B.M MUSYOKI AND CO.ADVOCATES</h1>
         </a>
         <nav class="navbar navbar-expand-lg navbar-light">
           <div class="container-fluid">
@@ -50,19 +26,17 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="">Home</a>
+                  <a class="nav-link active" href="{% url 'home' %}">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active" href="">About</a>
+                  <a class="nav-link" href="{% url 'about' %}">About</a>
                 </li>
                 <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Get Started
-                  </a>
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Get Started</a>
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#">Advocate</a></li>
-                    <li><a class="dropdown-item" href="#">Client</a></li>
-                    <li><a class="dropdown-item" href="#">Clerk</a></li>
+                    <li><a class="dropdown-item" href="{% url 'advocate' %}">Advocate</a></li>
+                    <li><a class="dropdown-item" href="{% url 'advocate' %}">Client</a></li>
+                    <li><a class="dropdown-item" href="{% url 'advocate' %}">Clerk</a></li>
                   </ul>
                 </li>
               </ul>
@@ -76,34 +50,19 @@
       </div>
     </header>
 
-    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-      <ol class="carousel-indicators">
-        <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
-        <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
-        <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
-      </ol>
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img src="{% static 'assets/img/law 4.jpg' %}" class="d-block w-100" alt="Law Image 4" />
-        </div>
-        <div class="carousel-item">
-          <img src="{% static 'assets/img/law 3.jpg' %}" class="d-block w-100" alt="Law Image 2" />
-        </div>
-        <div class="carousel-item">
-          <img src="{% static 'assets/img/law2.jpg' %}" class="d-block w-100" alt="Law Image 3" />
-        </div>
-      </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
-    </div>
+   
+    <main class="container mt-5">
+      {% block content %}
+      Welcome
+      {% endblock %}
+    </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+    <!-- Footer -->
+    <footer class="text-center py-4">
+      <p>&copy; 2024 B.M Musyoki and Co. Advocates. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

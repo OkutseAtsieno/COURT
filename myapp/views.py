@@ -1,27 +1,28 @@
 
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import login, logout, authenticate
+from django.contrib import messages
 from .models import CourtEvent, CustomUser, Advocate, Case
-from .forms import AdvocateForm,UserRegistrationForm,ProfileForm
-from django.db import models
+from .forms import AdvocateForm, UserRegistrationForm, ProfileForm
+from django.contrib.auth import get_user_model
 
-# Home view
+# Home and Base Views
 def home(request):
     return render(request, 'Home.html')
 
 def base_view(request):
     return render(request, 'base.html')
 
-# Portfolio view
+# Portfolio View
 def portfolio(request):
     return render(request, 'portfolio.html')
 
-# Court calendar view
+# Court Calendar View
 def court_calendar(request):
     events = CourtEvent.objects.all().order_by('date', 'time')
     return render(request, 'calendar/court_calendar.html', {'events': events})
 
-
+# Team View
 def team(request):
     users = CustomUser.objects.all()
     advocates = Advocate.objects.all()
@@ -30,7 +31,6 @@ def team(request):
     user_form = UserRegistrationForm()
     profile_form = ProfileForm()
 
-    # Pass the forms to the template context
     return render(request, 'team.html', {
         'users': users,
         'advocates': advocates,
@@ -38,27 +38,24 @@ def team(request):
         'profile_form': profile_form
     })
 
-
-# List all users
+# User Views
 def custom_user_list(request):
     users = CustomUser.objects.all()
     return render(request, 'custom_user_list.html', {'users': users})
 
-# Detail view for a single user
 def custom_user_detail(request, id):
     user = get_object_or_404(CustomUser, id=id)
     return render(request, 'custom_user_detail.html', {'user': user})
 
-# List all advocates
+# Advocate Views
 def advocate_list(request):
     advocates = Advocate.objects.all()
     return render(request, 'advocate_list.html', {'advocates': advocates})
 
-# Detail view for a single advocate
 def advocate_detail(request, id):
     advocate = get_object_or_404(Advocate, id=id)
     cases = Case.objects.filter(advocate=advocate)
-    
+
     if request.method == 'POST':
         advocate_form = AdvocateForm(request.POST, instance=advocate)
         if advocate_form.is_valid():
@@ -66,7 +63,7 @@ def advocate_detail(request, id):
             return redirect('advocate_detail', id=advocate.id)
     else:
         advocate_form = AdvocateForm(instance=advocate)
-    
+
     context = {
         'advocate': advocate,
         'cases': cases,
@@ -75,11 +72,7 @@ def advocate_detail(request, id):
     
     return render(request, 'advocate_detail.html', context)
 
-
-
-
-
-# Advocate login view
+# Advocate Login View
 def advocate_login(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -90,14 +83,14 @@ def advocate_login(request):
             return redirect('advocate_dashboard')
     return render(request, 'advocate_login.html')
 
-# Advocate dashboard view
+# Advocate Dashboard View
 def advocate_dashboard(request):
     if not request.user.is_authenticated or request.user.role != 'admin':
         return redirect('home')
     
     advocate = get_object_or_404(Advocate, user=request.user)
     cases = Case.objects.filter(advocate=advocate)
-    
+
     context = {
         'advocate': advocate,
         'cases': cases,
@@ -105,6 +98,7 @@ def advocate_dashboard(request):
     }
     return render(request, 'advocate_dashboard.html', context)
 
+# User Registration View
 def register_user(request):
     if request.method == 'POST':
         user_form = UserRegistrationForm(request.POST)
@@ -115,11 +109,8 @@ def register_user(request):
             profile = profile_form.save(commit=False)
             profile.user = user
             profile.save()
-
-            # Automatically log in the user after registration
-            login(request, user)
-
-            return redirect('success_page')  # Redirect to a success page or dashboard
+            login(request, user)  # Automatically log in the user
+            return redirect('success_page')
 
     else:
         user_form = UserRegistrationForm()
@@ -127,18 +118,68 @@ def register_user(request):
 
     return render(request, 'register.html', {'user_form': user_form, 'profile_form': profile_form})
 
+
+def advocate_register(request):
+    if request.method == 'POST':
+        email = request.POST['email']
+        password = request.POST['password']
+        confirm_password = request.POST['confirmPassword']
+
+        if password != confirm_password:
+            messages.error(request, "Passwords do not match.")
+            return render(request, 'advocate.html', {'error_message': "Passwords do not match."})
+
+        try:
+            user = CustomUser.objects.create_user(username=email, email=email, password=password)
+            user.save()
+            messages.success(request, "Registration successful! You can now log in.")
+            return redirect('login')  
+        except Exception as e:
+            messages.error(request, "Error during registration: " + str(e))
+            return render(request, 'advocate.html', {'error_message': str(e)})
+
+    return render(request, 'advocate.html')  # Render the form again if not POST
+
+# Client View
 def client_view(request):
     return render(request, 'client.html')
 
-def advocate_view(request):
-    return render(request, 'advocate.html')
-
+# Clerk View
 def clerk_view(request):
     return render(request, 'clerk.html')
 
+# About View
+def about(request):
+    return render(request='about.html')
 
 
-# Logout view
+
+def advocate_view(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        confirm_password = request.POST.get('confirmPassword')
+
+        if password != confirm_password:
+            messages.error(request, "Passwords do not match.")
+            return render(request, 'advocate.html')
+
+        try:
+            User = get_user_model()
+            user = User.objects.create_user(username=email, email=email, password=password)
+            advocate = Advocate(user=user, email=email)
+            advocate.save()
+
+            messages.success(request, "Registration successful!")
+            return redirect('success_page')
+
+        except Exception as e:
+            messages.error(request, f"Error during registration: {str(e)}")
+            return render(request, 'advocate.html', {'error_message': str(e)})
+
+    return render(request, 'advocate.html')
+
+# Logout View
 def user_logout(request):
     logout(request)
     return redirect('home')
