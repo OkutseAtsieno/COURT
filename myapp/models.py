@@ -18,14 +18,13 @@ class CustomUser(AbstractUser):
 
     groups = models.ManyToManyField(
         'auth.Group',
-        related_name='customuser_groups',  # Updated related_name
+        related_name='customuser_groups',  
         blank=True
     )
     
     user_permissions = models.ManyToManyField(
         'auth.Permission',
-        related_name='customuser_permissions',  # Updated related_name
-        blank=True
+        related_name='customuser_permissions',  
     )
 
     def __str__(self):

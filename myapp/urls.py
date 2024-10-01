@@ -12,6 +12,7 @@ urlpatterns = [
     # Portfolio page
     path('folio/', views.portfolio, name='portfolio'),
     path('about',views.about,name='about'),
+    path('login',views.login,name='login'),
 
     # Court calendar
     path('calendar/', views.court_calendar, name='court_calendar'),
@@ -41,4 +42,6 @@ urlpatterns = [
 
     # Logout
     path('logout/', views.user_logout, name='user_logout'),
+
+    path('Advocate_login',views.Advocate_login,name='Advocate_login')
 ]

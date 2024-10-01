@@ -5,6 +5,8 @@ from django.contrib import messages
 from .models import CourtEvent, CustomUser, Advocate, Case
 from .forms import AdvocateForm, UserRegistrationForm, ProfileForm
 from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
+
 
 # Home and Base Views
 def home(request):
@@ -16,6 +18,18 @@ def base_view(request):
 # Portfolio View
 def portfolio(request):
     return render(request, 'portfolio.html')
+
+def login_view(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('home')
+            messages.error(request, 'Invalid username or password.')
+    
+    return render(request, 'myapp/login.html')
 
 # Court Calendar View
 def court_calendar(request):
@@ -136,9 +150,9 @@ def advocate_register(request):
             return redirect('login')  
         except Exception as e:
             messages.error(request, "Error during registration: " + str(e))
-            return render(request, 'advocate.html', {'error_message': str(e)})
+            return render( 'advocate.html', {'error_message': str(e)})
 
-    return render(request, 'advocate.html')  # Render the form again if not POST
+    return redirect( 'login')  
 
 # Client View
 def client_view(request):
@@ -183,3 +197,31 @@ def advocate_view(request):
 def user_logout(request):
     logout(request)
     return redirect('home')
+
+def Advocate_login(request):
+    if request.method=='POST':
+        Fname=request.POST.get('Fname')
+        Lname=request.POST.get('Lname')
+        username=request.POST.get('username')
+        email=request.POST.get('email')
+        pass1=request.POST.get('pass1')
+        pass2=request.POST.get('pass2')
+
+        myuser=User.objects.create_user(username,email,pass1)
+        myuser.first_name=Fname
+        myuser.last_name=Lname
+        myuser.save
+
+        messages.success(request,"account created succesfully")
+        return redirect('login')
+    
+   
+    
+
+   
+        
+        
+        
+        
+
+    pass

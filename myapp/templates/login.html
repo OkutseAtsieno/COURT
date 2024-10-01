@@ -2,14 +2,14 @@
 {% extends "base.html" %}
 
 {% block title %}
-Clerk Registration
+Login
 {% endblock %}
 
 {% block content %}
 <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
-  <form method="POST" action="{% url 'advocate_view' %}" style="width: 300px;">  <!-- Adjust the width as needed -->
+  <form method="POST" action="{% url 'login_view' %}" style="width: 300px;">
     {% csrf_token %}
-    <h1 class="text-center">Clerk Registration</h1>
+    <h1 class="text-center">Login</h1>
     
     {% if error_message %}
       <div class="alert alert-danger">{{ error_message }}</div>
@@ -21,21 +21,11 @@ Clerk Registration
     </div>
     
     <div class="mb-3">
-      <label for="email" class="form-label">Email address</label>
-      <input type="email" class="form-control" id="email" name="email" required>
-    </div>
-    
-    <div class="mb-3">
       <label for="password" class="form-label">Password</label>
       <input type="password" class="form-control" id="password" name="password" required>
     </div>
     
-    <div class="mb-3">
-      <label for="confirmPassword" class="form-label">Confirm Password</label>
-      <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
-    </div>
-    
-    <button type="submit" class="btn btn-primary w-100">Sign Up</button>
+    <button type="submit" class="btn btn-primary w-100">Login</button>
   </form>
 </div>
 {% endblock %}
